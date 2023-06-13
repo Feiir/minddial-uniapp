@@ -1,14 +1,10 @@
 import { sendMessage, summaryContext, summaryTitle } from '@/network/api'
 import store from '../index'
-import * as TextEdncoding from 'text-encoding-shim'
-import { Base64 } from 'js-base64'
 import globalConfig, { globalHint, globalStatus } from '@/common/config'
 
 const MaxLength = 1000
 const MaxMessageLength = 6
 const MinSummaryTitleLength = 200
-const TimeOut = 10 * 1000
-let timer = null
 const chat = {
   state: {
     chatList: [],
