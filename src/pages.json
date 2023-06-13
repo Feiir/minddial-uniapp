@@ -1,0 +1,70 @@
+{
+  "easycom": {
+    "custom": {
+      "^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",
+      "^base-(.*)": "@/components/base-$1.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/home/home",
+      "style": {
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom",
+        "backgroundColor": "#f5f5f5"
+      }
+    },
+    {
+      "path": "pages/new-chat/new-chat",
+      "style": {
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/user-center/user-center",
+      "style": {
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom",
+        "backgroundColor": "#F2F4F5"
+      }
+    },
+    {
+      "path": "pages/user/user-open-vip/user-open-vip",
+      "style": {
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom",
+        "backgroundColor": "#F2F4F5"
+      }
+    },
+    {
+      "path": "pages/user/user-info/user-info",
+      "style": {
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom",
+        "backgroundColor": "#F2F4F5"
+      }
+    },
+    {
+      "path": "pages/user/user-server-man/user-server-man",
+      "style": {
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom",
+        "backgroundColor": "#F2F4F5"
+      }
+    },
+    {
+      "path": "pages/user/user-invite/user-invite",
+      "style": {
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom",
+        "backgroundColor": "#F2F4F5"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#fff"
+  }
+}
