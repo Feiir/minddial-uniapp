@@ -158,6 +158,42 @@ const chat = {
           })
         },
       )
+      let message = ''
+      let status = globalStatus.sending
+      requestTask.onChunkReceived(function (response) {
+        if (timer) clearTimeout(timer)
+        const arrayBuffer = response.data
+        const unit8Arr = new Uint8Array(arrayBuffer)
+        const str = new TextEdncoding.TextDecoder('utf-8').decode(unit8Arr)
+        let arr = str.split('\n')
+        // console.log(arr)
+        arr.forEach((item) => {
+          if (item === 'data:<!finish>') {
+            status = globalStatus.done
+          } else if (item === 'data:<!error>') {
+            status = globalStatus.error
+            message = message || globalHint.error
+          } else {
+            if (item.includes('data:')) {
+              let text = item.replace('data:', '')
+              message += Base64.decode(text)
+            }
+          }
+        })
+        if (status === globalStatus.sending) {
+          timer = setTimeout(() => {
+            if (!message) {
+              status = globalStatus.error
+              dispatch('updateRobotMessage', { content: globalHint.timeout, status })
+            } else {
+              status = globalStatus.done
+              dispatch('updateRobotMessage', { content: message, status })
+            }
+            requestTask.abort()
+          }, TimeOut)
+        }
+        dispatch('updateRobotMessage', { content: message, status })
+      })
     },
     updateRobotMessage({ state, commit }, options) {
       let message = {}
