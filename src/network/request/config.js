@@ -1,13 +1,12 @@
 let BASE_URL = ''
 
 if (process.env.NODE_ENV === 'development') {
-  // BASE_URL = 'http://minddial.top:8991'
-  BASE_URL = 'https://yourwebsite.com'
+  BASE_URL = '1.15.64.40:8991'
   // #ifdef H5
   BASE_URL = ''
   // #endif
 } else {
-  BASE_URL = 'https://yourwebsite.com' // 正式环境
+  BASE_URL = '1.15.64.40:8991' // 正式环境
 }
 
 const whiteList = ['/api/chat/message']
