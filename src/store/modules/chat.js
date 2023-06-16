@@ -1,10 +1,13 @@
 import { sendMessage, summaryContext, summaryTitle } from '@/network/api'
 import store from '../index'
+import * as TextEdncoding from 'text-encoding-shim'
+import { Base64 } from 'js-base64'
 import globalConfig, { globalHint, globalStatus } from '@/common/config'
 
 const MaxLength = 1000
 const MaxMessageLength = 6
 const MinSummaryTitleLength = 200
+let timer = null
 const chat = {
   state: {
     chatList: [],
@@ -220,7 +223,6 @@ const chat = {
       commit('updateHistoryItem')
     },
     async beforeSeedMessage({ state, commit, getters }, sendMessage) {
-      console.log('beforeSeedMessage', sendMessage)
       const str = JSON.stringify(getters.chatList)
       if (str.length > MaxLength || getters.chatList.length > MaxMessageLength) {
         const message = {
@@ -243,7 +245,6 @@ const chat = {
       // 没有生成过则生成
       if (!getters.activeChat.generatedTitle) {
         const str = JSON.stringify(getters.chatList)
-        console.log('当前长度+' + str.length)
         if (str.length > MinSummaryTitleLength) {
           const res = await summaryTitle(str)
           commit('updateHistoryTitle', res.answer)

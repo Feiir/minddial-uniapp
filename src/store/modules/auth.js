@@ -32,9 +32,12 @@ const auth = {
   },
   actions: {
     async wxLogin({ commit, dispatch }, data) {
-      const res = await wxLogin(data)
-      console.log(res)
-      commit('setToken', res.token)
+      // const res = await wxLogin(data)
+      // console.log(res)
+      commit(
+        'setToken',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODg3MTM3MzIsInVzZXJfaWQiOjk5OTl9.0xY_N-QnO4qpWdigpKcJBuDb_t3crTYLEWd7c2TFu5Y',
+      )
       await dispatch('getUserInfo')
     },
     async getUserInfo({ commit }) {
