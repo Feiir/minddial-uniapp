@@ -7,7 +7,7 @@ export const handleLogin = (id) => http.get('/api/wx/manual/' + id)
 // 发送消息
 let sendMessage = (data, onSuccess, onError) => {
   return wx.request({
-    url: BASE_URL + 'message',
+    url: BASE_URL + '/api/chat/message',
     data: data,
     method: 'POST',
     header: {
@@ -23,7 +23,7 @@ let sendMessage = (data, onSuccess, onError) => {
 
 // #ifdef H5
 sendMessage = (data) => {
-  return fetch(BASE_URL + 'message', {
+  return fetch(BASE_URL + '/api/chat/message', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -37,7 +37,7 @@ sendMessage = (data) => {
 export const uploadFile = (path) => {
   return new Promise((resolve, reject) => {
     uni.uploadFile({
-      url: BASE_URL + 'image',
+      url: BASE_URL + '/api/user/image',
       filePath: path,
       name: 'image',
       header: {
@@ -57,31 +57,31 @@ export const uploadFile = (path) => {
 }
 
 // 微信登录
-export const wxLogin = (data) => http.post('wechat/login', data)
+export const wxLogin = (data) => http.post('/api/user/wechat/login', data)
 // 公共配置
-export const getCommonSetting = () => http.get('common/setting')
+export const getCommonSetting = () => http.get('/api/common/setting')
 
 // 发送验证码
-export const sendSms = (data) => http.post('verify-code', data)
+export const sendSms = (data) => http.post('/api/user/verify-code', data)
 // 注册
-export const register = (data) => http.post('register', data)
+export const register = (data) => http.post('/api/user/register', data)
 // 登录
-export const login = (data) => http.post('login', data)
+export const login = (data) => http.post('/api/user/login', data)
 // 忘记密码
-export const forgetPassword = (data) => http.post('forget-password', data)
+export const forgetPassword = (data) => http.post('/api/user/forget-password', data)
 // 获取用户信息
-export const getUserInfo = () => http.get('info')
+export const getUserInfo = () => http.get('/api/user/info')
 // 修改用户信息
-export const updateUserInfo = (data) => http.post('info', data)
+export const updateUserInfo = (data) => http.post('/api/user/info', data)
 // 获取角色模型列表
-export const getRoleList = () => http.get('model/list')
+export const getRoleList = () => http.get('/api/model/list')
 // 总结上下文
-export const summaryContext = (message) => http.post('helper', { message, type: '2' })
+export const summaryContext = (message) => http.post('/api/chat/helper', { message, type: '2' })
 // 总结标题
-export const summaryTitle = (message) => http.post('helper', { message, type: '1' })
+export const summaryTitle = (message) => http.post('/api/chat/helper', { message, type: '1' })
 // 兑换卡密
-export const exchangeCard = (data) => http.post('cd-key/redeem', data)
+export const exchangeCard = (data) => http.post('/api/user/cd-key/redeem', data)
 // 获取邀请列表
-export const getInviteList = () => http.get('invited-users')
+export const getInviteList = () => http.get('/api/user/invited-users')
 
 export { sendMessage }
