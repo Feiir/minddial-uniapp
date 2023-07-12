@@ -34,6 +34,15 @@ http.interceptors.response.use(
       } else {
         return data.data
       }
+    } else if (data.code === 400) {
+      uni.login({
+        provider: 'weixin',
+        success: async (loginRes) => {
+          await store.dispatch('wxLogin', {
+            JsCode: loginRes.code.toString(),
+          })
+        },
+      })
     } else {
       uni.showToast({
         title: data.msg,
