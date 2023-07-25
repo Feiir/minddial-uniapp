@@ -34,17 +34,17 @@ export default {
       uni.redirectTo({ url: '/pages/home/home' })
     },
     initWx() {
-      if (!store.state.auth.token || this.id) {
-        uni.login({
-          provider: 'weixin',
-          success: async (loginRes) => {
-            await store.dispatch('wxLogin', {
-              JsCode: loginRes.code.toString(),
-              InvitationUID: +this.id || 0,
-            })
-          },
-        })
-      }
+      // if (!store.state.auth.token || this.id) {
+      uni.login({
+        provider: 'weixin',
+        success: async (loginRes) => {
+          await store.dispatch('wxLogin', {
+            JsCode: loginRes.code.toString(),
+            InvitationUID: +this.id || 0,
+          })
+        },
+      })
+      // }
     },
   },
   onHide: function () {},
